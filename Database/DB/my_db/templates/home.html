@@ -1,0 +1,149 @@
+<html>
+<head>
+<style>
+#iphones {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#iphones td, #iphones th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#iphones tr:nth-child(even){background-color: #f2f2f2;}
+
+#iphones tr:hover {background-color: #ddd;}
+
+#iphones th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #4CAF50;
+  color: white;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: #4CAF50;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  border: 1px solid #ddd;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+</style>
+</head>
+
+    <body>
+        <h1>WEB APP PYTHON PROJECT FOR SCAPPED ITEMS FROM FLIPKART</h1>
+        <h2>To add an Iphone, Use the form below and click ADD</h2>
+        <form method="POST" action "/">
+            <table id="iphones">
+                <!--<th>S/N</th>-->
+                <th>Name</th>
+                <th>Camera</th> 
+                <th>Screen</th>
+                <th><p>Price</p>(Rupees)</th>
+                <th>Processor</th> 
+                <th>Rating</th>
+                <th>ROM</th>
+                <tr>
+                    <!--<td><input type="text" name="id_num" size = 4></td>-->
+                    <td><input type="text" name="name"></td>
+                    <td><input type="text" name="camera"></td>
+                    <td><input type="text" name="display"></td>
+                    <td><input type="text" name="price"></td>
+                    <td><input type="text" name="processor"></td>
+                    <td><input type="text" name="rating" size=4></td>
+                    <td><input type="text" name="rom" size = 4></td>
+                </tr>
+                <tr><td><input type="submit" value="ADD"></td></tr>
+            </table>
+        </form>
+        
+        <h3>Iphones List</h3>
+        <div>
+            <table>
+                <tr>
+        <td><input type="text" id="myInput" onkeyup="myName()" placeholder="Search names.." title="Type in a name"></td>
+           <tr> </table></div>
+        <table id="myTable">
+                <!--<th>S/N</th>-->
+                <th>Name</th>
+                <th>Camera</th> 
+                <th>Screen</th>
+                <th>Price(Rupees)</th>
+                <th>Processor</th>
+                <th>ROM</th>
+                <th>Rating</th>
+            {% for iphone in iphones.items %}
+            <tr>
+                <!--<td>{{iphone.id_num}}</td>-->
+                <td>{{iphone.name}}</td>
+                <td>{{iphone.camera}}</td>
+                <td>{{iphone.display}}</td>
+                <td>{{iphone.price}}</td>
+                <td>{{iphone.processor}}</td>
+                <td>{{iphone.rom}}</td>
+                <td>{{iphone.rating}}</td>
+                <td><p><form method ="POST" action="./delete">
+                    <input type="hidden" value="{{iphone.id_num}}" name ="id_num">
+                    <input type="submit" value="Delete"></form></p>
+                    <p><form method ="POST" action="./update">
+                    <input type="hidden" value="{{iphone.id_num}}" name ="id_num">
+                    <input type="submit" value="Edit">
+                    </form></p></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <script>
+                function myName() {
+                  var input, filter, table, tr, td, i, txtValue;
+                  input = document.getElementById("myInput");
+                  filter = input.value.toUpperCase();
+                  table = document.getElementById("myTable");
+                  tr = table.getElementsByTagName("tr");
+                  for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[0];
+                    if (td) {
+                      txtValue = td.textContent || td.innerText;
+                      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                      } else {
+                        tr[i].style.display = "none";
+                      }
+                    }       
+                  }
+                }
+            </script>
+    </body>
+</html>

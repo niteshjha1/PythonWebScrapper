@@ -1,0 +1,62 @@
+<html>
+<head>
+<style>
+#iphones {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#iphones td, #iphones th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#iphones tr:nth-child(even){background-color: #f2f2f2;}
+
+#iphones tr:hover {background-color: #ddd;}
+
+#iphones th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+</style>
+</head>
+
+    <body>
+        <h1>To edit an Iphone, Use the form below and click SUBMIT</h1>
+        <h3>Edit Iphone</h3>
+        <form method="POST" action="./save_changes">
+            <table id="iphones">
+                <th>Name</th>
+                <th>Camera</th> 
+                <th>Screen</th>
+                <th>Price(Rupees)</th>
+                <th>Processor</th> 
+                <th>Rating</th>
+                <th>ROM(Internal Memory)</th>
+                <tr>
+                    <td><p><input type="hidden" value = "{{iphone.name}}" name="oldname"></p>
+                        <input type="text" value = "{{iphone.name}}" name="newname">
+                        <input type="hidden" value="{{iphone.id_num}}" name ="id_num"></td>
+                    <td><p><input type="hidden" value = "{{iphone.camera}}" name="oldcamera"></p>
+                        <input type="text" value = "{{iphone.camera}}" name="newcamera"></td>
+                    <td><p><input type="hidden" value = "{{iphone.display}}" name="olddisplay"></p>
+                        <input type="text" value = "{{iphone.display}}" name="newdisplay"></td>
+                    <td><p><input type="hidden" value = "{{iphone.price}}" name="oldprice"></p>
+                        <input type="text" value = "{{iphone.price}}" name="newprice"></td>
+                    <td><p><input type="hidden" value = "{{iphone.processor}}" name="oldprocessor"></p>
+                        <input type="text" value = "{{iphone.processor}}" name="newprocessor"></td>
+                    <td><p><input type="hidden" value = "{{iphone.rating}}" name="oldrating"></p>
+                        <input type="text" value = "{{iphone.rating}}" name="newrating"></td>
+                    <td><p><input type="hidden" value = "{{iphone.rom}}" name="oldrom"></p>
+                        <input type="text" value = "{{iphone.rom}}" name="newrom"></td>
+                </tr>
+                <tr><td><input type="submit" value="SUBMIT"></td></tr>
+            </table>
+        </form>
+    </body>
+</html>
